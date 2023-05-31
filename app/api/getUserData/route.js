@@ -17,7 +17,7 @@ export async function POST(request) {
 		}}
 	);
 
-	if ( rows.length <= 0) {
+	if ( user.length <= 0) {
 		return new Response(JSON.stringify({
 			success: true,
 			userData: 'USERNOTFOUND'
