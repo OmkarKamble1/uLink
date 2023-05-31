@@ -1,27 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+body, html {
+  	margin: 0;
+	overflow-x: hidden;
+}
+.notification-div{
+	box-shadow: 0 5px 5px -2px rgb(61, 61, 61, 0.8);
+	transform: translateX(calc(1.25rem + 100%));
+	transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.popup-active {
+	transform: translateX(0%);
+	opacity: 100%;
 }
