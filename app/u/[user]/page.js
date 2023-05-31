@@ -12,14 +12,14 @@ function UserPage({params}) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loadingData, setLoadingData] = useState(true);
 	const [data, setData] = useState([]);
-	const	 [notificationText, setNotificationText ] = useState('');
+	const [notificationText, setNotificationText ] = useState('');
 
 	const {data: session} = useSession()
 	
 	const getData = async (rData) => {
 		console.log(JSON.stringify(rData));
 		await axios.post('/api/getUserData', { 
-			id: rData.user.id
+			id: session.user.id
 		})
 		.then((res) => {
 			if ( res.data.userData !== 'NOTFOUND' ) {
@@ -48,7 +48,7 @@ function UserPage({params}) {
 	useEffect(() => {
 		console.log('Session already exists')
 		setIsLoggedIn(true);
-		getData(session);
+		getData();
 	},[session])
 
 	return (
