@@ -5,7 +5,31 @@ export async function POST(request) {
 	const result = await request.json();
 	const { id } = result;
 
-	const { rows } = await query('SELECT * FROM public.links WHERE user_id = $1', [id], (err) => {
+	const { rows: user } = await query('SELECT * FROM users WHERE user_id = $1', [id], (err) => {
+		if (err) {
+			return new Response(JSON.stringify({
+				success: false
+			}),
+			{
+				status: 400
+			}
+			);
+		}}
+	);
+
+	if ( rows.length <= 0) {
+		return new Response(JSON.stringify({
+			success: true,
+			userData: 'USERNOTFOUND'
+		}),
+		{
+			status: 200
+		}
+		);
+	}
+
+
+	const { rows } = await query('SELECT * FROM links WHERE user_id = $1', [id], (err) => {
 		if (err) {
 			return new Response(JSON.stringify({
 				success: false
@@ -29,7 +53,7 @@ export async function POST(request) {
 	} else {
 		return new Response(JSON.stringify({
 			success: true,
-			userData: 'NOTFOUND'
+			userData: 'LINKSNOTFOUND'
 		}),
 		{
 			status: 200

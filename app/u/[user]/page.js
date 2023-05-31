@@ -22,18 +22,27 @@ function UserPage({params}) {
 			id: session.user.id
 		})
 		.then((res) => {
-			if ( res.data.userData !== 'NOTFOUND' ) {
-				setData(res.data.userData);
-				setLoadingData(false);
+			if (res.data.userData === 'USERNOTFOUND') {
+				if (res.data.userData !== 'LINKSNOTFOUND') {
+					setData(res.data.userData);
+					setLoadingData(false);
+				} else {
+					setData('NOTFOUND');
+					setLoadingData(false);
+					setNotificationText('User not found')
+					document.getElementById('notification-div').classList.add('popup-active');
+					setTimeout(() => {
+						document.getElementById('notification-div').classList.remove('popup-active');
+					}, 2000);					
+				}
 			} else {
-				setData('NOTFOUND');
-				setLoadingData(false);
 				setNotificationText('User not found')
 				document.getElementById('notification-div').classList.add('popup-active');
 				setTimeout(() => {
 					document.getElementById('notification-div').classList.remove('popup-active');
 				}, 2000);
 			}
+			
 			
 		})
 		.catch((err) => {
