@@ -138,7 +138,7 @@ function UserPage({ params }) {
 																{row.short_link}
 															</a>
 														</td>
-														<td className='py-3 px-6 max-sm:hidden'>
+														<td className='py-3 px-6 max-sm:py-2 max-sm:px-1 max-sm:text-sm'>
 															{row.views}
 														</td>
 														<td className='py-3 px-6 rounded-e-full truncate max-sm:hidden'>
