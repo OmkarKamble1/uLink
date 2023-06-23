@@ -10,12 +10,12 @@ export default function RootLayout({ children }) {
 	const [username, setUsername] = useState();
 
 	return (
-		<html lang="en">
+		<html lang='en'>
 			<head>
 				<title>uLink</title>
 			</head>
 			<SessionProvider>
-				<body className="relative bg-gradient-to-r from-teal-400 to-violet-600 font-Nunito">
+				<body className='relative bg-gradient-to-r from-teal-400 to-violet-600 font-Nunito'>
 					<Navbar />
 					{children}
 					<Footer />
