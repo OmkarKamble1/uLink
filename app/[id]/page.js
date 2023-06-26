@@ -3,18 +3,18 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 
-function page({ params }) {
+function CodePage({ params }) {
 	const urlCode = params.id;
 	const getOriginalUrl = async () => {
-		console.log('Getting original URL');
+		const stats = await getStats();
 		await axios
 			.post('/api/get', {
-				id: urlCode
+				id: urlCode,
+				stats: stats
 			})
 			.then((res) => {
 				if ((res.data.success = true)) {
 					const original_link = res.data.link;
-					console.log(res.data);
 					window.location.href = original_link;
 				} else {
 					document
@@ -33,6 +33,20 @@ function page({ params }) {
 						'<h1 class="text-red-600">Link not found</h1>')
 			);
 	};
+	const getStats = async () => {
+		// get timestamp
+		const now = Date.now();
+		// get location
+		const location = await axios.get('https://geolocation-db.com/json/');
+
+		const returnObj = {
+			timestamp: now,
+			country: location.data.country_name,
+			state: location.data.state,
+			city: location.data.city
+		};
+		return returnObj;
+	};
 	useEffect(() => {
 		getOriginalUrl();
 	});
@@ -44,4 +58,4 @@ function page({ params }) {
 	);
 }
 
-export default page;
+export default CodePage;

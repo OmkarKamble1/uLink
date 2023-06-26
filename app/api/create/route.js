@@ -37,6 +37,8 @@ export async function POST(request) {
 		}
 	);
 
+	await query('UPDATE users SET total_links = total_links + 1');
+
 	return new Response(
 		JSON.stringify({
 			success: true,
