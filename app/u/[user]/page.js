@@ -146,7 +146,7 @@ function UserPage({ params }) {
 													</td>
 													<td className='py-3 px-6 max-sm:px-1 max-sm:text-sm  rounded-e-full max-sm:rounded-e-full'>
 														<a
-															href={`http://localhost:3000/u/Omkar/stats?link=${row.link_id}`}
+															href={`/u/${username}/stats?link=${row.link_id}`}
 														>
 															<button className='bg-indigo-600 hover:bg-indigo-800 py-1 px-4 rounded-full max-sm:text-sm  text-white'>
 																show
